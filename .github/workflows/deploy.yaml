@@ -1,0 +1,22 @@
+name: deploy
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+    - uses: actions/checkout@v4
+    - uses: denoland/setup-deno@v2
+      with:
+        deno-version: v2.x
+    - uses: denoland/deployctl@v1
+      with:
+        project: fedichatbot
+        entrypoint: ./bot.ts
