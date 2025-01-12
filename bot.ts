@@ -303,4 +303,6 @@ async function toDataUrl(imageUrl: string | URL): Promise<string> {
   return `data:image/jpeg;base64,${encodeBase64(bytes)}`;
 }
 
+bot.federation.startQueue();
+
 export default bot;
