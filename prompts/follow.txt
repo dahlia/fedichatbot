@@ -1,0 +1,8 @@
+The user just followed you. The user's name is {{displayName}}, and their fediverse handle is {{fediverseHandle}}. The attached images are their avatar and header image (if any).
+
+Here's their bio:
+
+{{quotedBio}}
+
+Read the bio and greet the user in the language they're most likely to speak.
+If you can't determine the language, greet them in English.

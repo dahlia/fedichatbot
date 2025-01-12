@@ -1,0 +1,62 @@
+{
+  "deno.enable": true,
+  "deno.unstable": [
+    "kv",
+    "temporal"
+  ],
+  "editor.detectIndentation": false,
+  "editor.indentSize": 2,
+  "editor.insertSpaces": true,
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.sortImports": "always"
+    }
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "denoland.vscode-deno",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.sortImports": "always"
+    }
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.sortImports": "always"
+    }
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "denoland.vscode-deno",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.sortImports": "always"
+    }
+  },
+  "cSpell.words": [
+    "botkit",
+    "denokv",
+    "FediChatBot",
+    "Fedify",
+    "fediverse",
+    "genai",
+    "ipynb",
+    "kitsonk",
+    "langchain",
+    "logtape",
+    "Minhee"
+  ]
+}
