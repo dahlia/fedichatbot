@@ -138,7 +138,7 @@ bot.onReply = async (session, msg) => {
       session,
       thread[0].actor,
       thread[0].actor?.id?.href === session.actorId.href
-        ? await getFollowPrompt(thread[0].actor)
+        ? await getFollowPrompt(thread[0].mentions[0])
         : await getMentionPrompt(thread[0].actor),
     ),
   ];
