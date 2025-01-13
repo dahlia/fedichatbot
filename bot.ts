@@ -44,6 +44,7 @@ import "@std/dotenv/load";
 import { encodeBase64 } from "@std/encoding/base64";
 import { join } from "@std/path/join";
 import { AsyncLocalStorage } from "node:async_hooks";
+import { detect } from "tinyld";
 import { FilterXSS } from "xss";
 import metadata from "./deno.json" with { type: "json" };
 
@@ -106,9 +107,11 @@ bot.onFollow = async (session, actor) => {
     await getIntroMessage(session, actor, await getFollowPrompt(actor)),
   ]);
   const message = response.content.toString();
+  const language = detect(message);
   const md: Text<"block", void> = markdown(message);
   await session.publish(
     await mentions(session, md, actor) ? md : text`${mention(actor)}\n\n${md}`,
+    { language },
   );
 };
 
@@ -121,9 +124,11 @@ bot.onMention = async (session, msg) => {
     await getHumanMessage(msg),
   ]);
   const message = response.content.toString();
+  const language = detect(message);
   const md: Text<"block", void> = markdown(message);
   await msg.reply(
     await mentions(session, md, actor) ? md : text`${mention(actor)}\n\n${md}`,
+    { language },
   );
 };
 
@@ -150,11 +155,13 @@ bot.onReply = async (session, msg) => {
   }
   const response = await llm.invoke(messages);
   const message = response.content.toString();
+  const language = detect(message);
   const md: Text<"block", void> = markdown(message);
   await msg.reply(
     await mentions(session, md, msg.actor)
       ? md
       : text`${mention(msg.actor)}\n\n${md}`,
+    { language },
   );
 };
 
