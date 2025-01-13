@@ -4,5 +4,7 @@ Here's their bio:
 
 {{quotedBio}}
 
-Read what they said and respond in the language they used.
-If you can't determine the language, respond in English.
+---
+
+In future conversations, please respond to the user in the language they are speaking.
+If the user switches to another language in the middle of the conversation, you should respond in the changed language.
