@@ -34,6 +34,7 @@
     "npm:@opentelemetry/semantic-conventions@^1.27.0": "1.28.0",
     "npm:@phensley/language-tag@^1.9.0": "1.9.2",
     "npm:@phensley/language-tag@^1.9.2": "1.9.2",
+    "npm:@types/markdown-it@^14.1.1": "14.1.2",
     "npm:asn1js@^3.0.5": "3.0.5",
     "npm:json-canon@^1.0.1": "1.0.1",
     "npm:jsonld@^8.3.2": "8.3.2",
@@ -96,7 +97,8 @@
     "@fedify/markdown-it-mention@0.2.0": {
       "integrity": "98706e8dfafb0ce45c781e2e7162400be4d9c71f80c5a1671d7209086b9ba6a3",
       "dependencies": [
-        "jsr:@std/html@0.224"
+        "jsr:@std/html@0.224",
+        "npm:@types/markdown-it"
       ]
     },
     "@hongminhee/x-forwarded-fetch@0.2.0": {
@@ -225,6 +227,19 @@
       "dependencies": [
         "tslib"
       ]
+    },
+    "@types/linkify-it@5.0.0": {
+      "integrity": "sha512-sVDA58zAw4eWAffKOaQH5/5j3XeayukzDk+ewSsnv3p4yJEZHCCzMDiZM8e0OUrRvmpGZ85jf4yDHkHsgBNr9Q=="
+    },
+    "@types/markdown-it@14.1.2": {
+      "integrity": "sha512-promo4eFwuiW+TfGxhi+0x3czqTYJkG8qB17ZUJiVF10Xm7NLVRSLUsfRTU/6h1e24VvRnXCx+hG7li58lkzog==",
+      "dependencies": [
+        "@types/linkify-it",
+        "@types/mdurl"
+      ]
+    },
+    "@types/mdurl@2.0.0": {
+      "integrity": "sha512-RGdgjQUZba5p6QEFAVx2OGb8rQDL/cPRG7GiedRzMcJ1tYnUANBncjbSB1NRGwbvjcPeikRABz2nshyPk1bhWg=="
     },
     "@types/retry@0.12.0": {
       "integrity": "sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA=="
