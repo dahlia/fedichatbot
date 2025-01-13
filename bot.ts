@@ -186,6 +186,8 @@ const template = new Template({ isEscape: false });
 function getSystemPrompt(session: Session<void>): string {
   return template.render(SYSTEM_PROMPT_TEMPLATE, {
     fediverseHandle: session.actorHandle,
+    license: metadata.license,
+    version: metadata.version,
     dateTime: new Date().toUTCString(),
   });
 }
