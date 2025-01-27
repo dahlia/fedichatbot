@@ -16,6 +16,7 @@
 import Template from "@deno-library/template";
 import {
   type Actor,
+  type Bot,
   createBot,
   parseSemVer,
   type Session,
@@ -66,9 +67,9 @@ await configure({
 
 const logger = getLogger("fedichatbot");
 
-const kv = await Deno.openKv();
+const kv: Deno.Kv = await Deno.openKv();
 
-const bot = createBot<void>({
+const bot: Bot<void> = createBot<void>({
   username: "FediChatBot",
   name: "FediChatBot",
   summary: text`An LLM-powered chatbot for the fediverse, powered by ${
@@ -96,12 +97,14 @@ const bot = createBot<void>({
     version: parseSemVer(metadata.version),
     repository: new URL("https://github.com/dahlia/fedichatbot"),
   },
+  pages: { color: "sand" },
   kv: new DenoKvStore(kv),
   queue: new DenoKvMessageQueue(kv),
   behindProxy: Deno.env.get("DENO_DEPLOYMENT_ID") == null,
 });
 
-bot.onFollow = async (session, actor) => {
+bot.onFollow = async (session, followRequest) => {
+  const actor = followRequest.follower;
   const response = await llm.invoke([
     getSystemMessage(session),
     await getIntroMessage(session, actor, await getFollowPrompt(actor)),

@@ -5,7 +5,7 @@
   "exports": "./bot.ts",
   "imports": {
     "@deno-library/template": "jsr:@deno-library/template@^0.2.1",
-    "@fedify/botkit": "jsr:@fedify/botkit@^0.1.0-dev.30+a6be54e1",
+    "@fedify/botkit": "jsr:@fedify/botkit@^0.1.0-dev.58+f98eca6f",
     "@fedify/fedify": "jsr:@fedify/fedify@^1.3.3",
     "@kitsonk/kv-toolbox": "jsr:@kitsonk/kv-toolbox@^0.25.0",
     "@langchain/core": "npm:@langchain/core@^0.3.28",
@@ -21,7 +21,14 @@
     "kv",
     "temporal"
   ],
+  "fmt": {
+    "exclude": [
+      "*.md",
+      ".github"
+    ]
+  },
   "tasks": {
+    "check": "deno check *.ts && deno lint && deno fmt --check",
     "dev": "deno serve -A --watch bot.ts"
   }
 }
