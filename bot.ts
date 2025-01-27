@@ -81,21 +81,21 @@ const bot: Bot<void> = createBot<void>({
     )
   }.`,
   icon: new URL(
-    "https://raw.githubusercontent.com/dahlia/fedichatbot/refs/heads/main/logo.png",
+    "https://raw.githubusercontent.com/fedify-dev/fedichatbot/refs/heads/main/logo.png",
   ),
   properties: {
     "Model": link(
       "Gemini 2.0 Flash (experimental)",
       "https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash",
     ),
-    "Source code": link("GitHub", "https://github.com/dahlia/fedichatbot"),
+    "Source code": link("GitHub", "https://github.com/fedify-dev/fedichatbot"),
     "Powered by": link("BotKit", "https://botkit.fedify.dev/"),
     "Created by": mention("@hongminhee@hollo.social"),
   },
   software: {
     name: "fedichatbot",
     version: parseSemVer(metadata.version),
-    repository: new URL("https://github.com/dahlia/fedichatbot"),
+    repository: new URL("https://github.com/fedify-dev/fedichatbot"),
   },
   pages: { color: "sand" },
   kv: new DenoKvStore(kv),
