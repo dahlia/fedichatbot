@@ -3,9 +3,10 @@
   "specifiers": {
     "jsr:@deno-library/template@~0.2.1": "0.2.1",
     "jsr:@deno/kv-utils@~0.1.3": "0.1.3",
-    "jsr:@fedify/botkit@~0.1.0-dev.58+f98eca6f": "0.1.0-dev.58+f98eca6f",
+    "jsr:@fedify/botkit@~0.1.0-dev.63+f54fee0a": "0.1.0-dev.63+f54fee0a",
     "jsr:@fedify/fedify@^1.3.3": "1.3.5",
     "jsr:@fedify/fedify@^1.3.4": "1.3.5",
+    "jsr:@fedify/markdown-it-hashtag@0.3": "0.3.0",
     "jsr:@fedify/markdown-it-mention@0.2": "0.2.0",
     "jsr:@hongminhee/x-forwarded-fetch@0.2": "0.2.0",
     "jsr:@hono/hono@^4.6.18": "4.6.19",
@@ -59,10 +60,11 @@
         "jsr:@std/encoding@^1.0.5"
       ]
     },
-    "@fedify/botkit@0.1.0-dev.58+f98eca6f": {
-      "integrity": "11b9045078cdce1a68e943a7a338f8958ad62d80365d79060a91a19f7b225620",
+    "@fedify/botkit@0.1.0-dev.63+f54fee0a": {
+      "integrity": "c7a5f590dcd2bda93a9475795b443966387088e1e647bfd0c586ad7aa182792d",
       "dependencies": [
         "jsr:@fedify/fedify@^1.3.4",
+        "jsr:@fedify/markdown-it-hashtag",
         "jsr:@fedify/markdown-it-mention",
         "jsr:@hongminhee/x-forwarded-fetch",
         "jsr:@hono/hono",
@@ -118,6 +120,12 @@
         "npm:pkijs",
         "npm:uri-template-router",
         "npm:url-template"
+      ]
+    },
+    "@fedify/markdown-it-hashtag@0.3.0": {
+      "integrity": "0f4ebe15d0da2a1d1fe9ad74209811b6aa409e5cd1539b7934fc7ae5f7c88207",
+      "dependencies": [
+        "jsr:@std/html@0.224"
       ]
     },
     "@fedify/markdown-it-mention@0.2.0": {
@@ -556,7 +564,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@deno-library/template@~0.2.1",
-      "jsr:@fedify/botkit@~0.1.0-dev.58+f98eca6f",
+      "jsr:@fedify/botkit@~0.1.0-dev.63+f54fee0a",
       "jsr:@fedify/fedify@^1.3.3",
       "jsr:@kitsonk/kv-toolbox@0.25",
       "jsr:@logtape/logtape@0.8",
