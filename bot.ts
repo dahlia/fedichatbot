@@ -47,6 +47,7 @@ import { join } from "@std/path/join";
 import { AsyncLocalStorage } from "node:async_hooks";
 import { detect } from "tinyld";
 import { FilterXSS } from "xss";
+import { z } from "zod";
 import metadata from "./deno.json" with { type: "json" };
 
 await configure({
@@ -118,13 +119,27 @@ bot.onFollow = async (session, followRequest) => {
   );
 };
 
+const reactionResponseSchema = z.object({
+  whetherToLike: z.boolean().describe(
+    "Whether to press the like button on the message.",
+  ),
+});
+
 bot.onMention = async (session, msg) => {
   if (msg.replyTarget != null) return;
   const actor = msg.actor;
+  const llmWithStruct = llm.withStructuredOutput(reactionResponseSchema);
+  const whetherToLike = await llmWithStruct.invoke([
+    getSystemMessage(session),
+    await getIntroMessage(session, actor, await getMentionPrompt(actor)),
+    await getHumanMessage(msg, true),
+  ]);
+  logger.debug("Whether to like: {whetherToLike}", whetherToLike);
+  if (whetherToLike.whetherToLike) await msg.like();
   const response = await llm.invoke([
     getSystemMessage(session),
     await getIntroMessage(session, actor, await getMentionPrompt(actor)),
-    await getHumanMessage(msg),
+    await getHumanMessage(msg, false),
   ]);
   const message = response.content.toString();
   const language = detect(message);
@@ -153,9 +168,16 @@ bot.onReply = async (session, msg) => {
   for (const msg of thread) {
     const message = msg.actor?.id?.href === session.actorId.href
       ? new AIMessage(msg.text)
-      : await getHumanMessage(msg);
+      : await getHumanMessage(msg, false);
     messages.push(message);
   }
+  const llmWithStruct = llm.withStructuredOutput(reactionResponseSchema);
+  const whetherToLike = await llmWithStruct.invoke([
+    ...messages.slice(0, messages.length - 1),
+    await getHumanMessage(thread[thread.length - 1], true),
+  ]);
+  if (whetherToLike.whetherToLike) await msg.like();
+  logger.debug("Whether to like: {whetherToLike}", whetherToLike);
   const response = await llm.invoke(messages);
   const message = response.content.toString();
   const language = detect(message);
@@ -182,6 +204,9 @@ const FOLLOW_PROMPT_TEMPLATE = await Deno.readTextFile(
 );
 const MENTION_PROMPT_TEMPLATE = await Deno.readTextFile(
   join(import.meta.dirname!, "prompts", "mention.txt"),
+);
+const REACTION_PROMPT_TEMPLATE = await Deno.readTextFile(
+  join(import.meta.dirname!, "prompts", "reaction.txt"),
 );
 
 const template = new Template({ isEscape: false });
@@ -221,6 +246,15 @@ async function getFollowPrompt(actor: Actor): Promise<string> {
     quotedBio: bio == null
       ? "Not available."
       : `> ${textXss.process(bio).replaceAll("\n", "\n> ")}`,
+  });
+}
+
+function getReactionPrompt(message: Message<MessageClass, void>): string {
+  const msg = message.text;
+  return template.render(REACTION_PROMPT_TEMPLATE, {
+    quotedMessage: msg == null
+      ? "Not available."
+      : `> ${msg.replaceAll("\n", "\n> ")}`,
   });
 }
 
@@ -281,6 +315,7 @@ async function getMentionPrompt(actor: Actor): Promise<string> {
 
 async function getHumanMessage<T extends MessageClass>(
   msg: Message<T, void>,
+  reaction: boolean,
 ): Promise<HumanMessage> {
   const attachments = msg.attachments.map(async (doc) => {
     if (!doc.mediaType?.startsWith("image/")) return null;
@@ -293,7 +328,7 @@ async function getHumanMessage<T extends MessageClass>(
   });
   return new HumanMessage({
     content: [
-      { type: "text", text: msg.text },
+      { type: "text", text: reaction ? getReactionPrompt(msg) : msg.text },
       ...(await Promise.all(attachments)).filter((a) => a != null),
     ],
   });

@@ -5,7 +5,7 @@
   "exports": "./bot.ts",
   "imports": {
     "@deno-library/template": "jsr:@deno-library/template@^0.2.1",
-    "@fedify/botkit": "jsr:@fedify/botkit@^0.1.0-dev.63+f54fee0a",
+    "@fedify/botkit": "jsr:@fedify/botkit@^0.1.0-dev.67+94b4841c",
     "@fedify/fedify": "jsr:@fedify/fedify@^1.3.3",
     "@kitsonk/kv-toolbox": "jsr:@kitsonk/kv-toolbox@^0.25.0",
     "@langchain/core": "npm:@langchain/core@^0.3.28",
@@ -15,7 +15,8 @@
     "@std/encoding": "jsr:@std/encoding@^1.0.6",
     "@std/path": "jsr:@std/path@^1.0.8",
     "tinyld": "npm:tinyld@^1.3.4",
-    "xss": "npm:xss@^1.0.15"
+    "xss": "npm:xss@^1.0.15",
+    "zod": "npm:zod@^3.24.1"
   },
   "unstable": [
     "kv",

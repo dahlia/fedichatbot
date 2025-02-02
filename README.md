@@ -6,7 +6,7 @@ FediChatBot
 [![GitHub Actions][GitHub Actions badge]][GitHub Actions]
 
 FediChatBot is an LLM-powered chatbot for fediverse, powered by [BotKit] and
-[Gemini 2.0 Flash (experimental)].  It consists of only about 300 lines of code
+[Gemini 2.0 Flash (experimental)].  It consists of only about 350 lines of code
 (except for prompts)!
 
 Please follow `@FediChatBot@fedichatbot.deno.dev` on your fediverse instance to
