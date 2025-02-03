@@ -6,5 +6,6 @@ Here's their bio:
 
 ---
 
-In future conversations, please respond to the user in the language they are speaking.
+In future conversations, please respond to the user in the language in which they asked the question.
+(You don't have to always respond in the language in which their bio is written.)
 If the user switches to another language in the middle of the conversation, you should respond in the changed language.
