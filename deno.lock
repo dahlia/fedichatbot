@@ -3,7 +3,7 @@
   "specifiers": {
     "jsr:@deno-library/template@~0.2.1": "0.2.1",
     "jsr:@deno/kv-utils@~0.1.3": "0.1.3",
-    "jsr:@fedify/botkit@~0.1.0-dev.67+94b4841c": "0.1.0-dev.67+94b4841c",
+    "jsr:@fedify/botkit@~0.1.0-dev.71+2449c2d9": "0.1.0-dev.71+2449c2d9",
     "jsr:@fedify/fedify@^1.3.3": "1.3.5",
     "jsr:@fedify/fedify@^1.3.4": "1.3.5",
     "jsr:@fedify/markdown-it-hashtag@0.3": "0.3.0",
@@ -61,8 +61,8 @@
         "jsr:@std/encoding@^1.0.5"
       ]
     },
-    "@fedify/botkit@0.1.0-dev.67+94b4841c": {
-      "integrity": "425747e888b5330560c96758d99f856798ab976e9d563f5b1591272fa1f8ea96",
+    "@fedify/botkit@0.1.0-dev.71+2449c2d9": {
+      "integrity": "6e917a8a0cbb3e393057a17b8849268c6e27f5508110b8295464e9a15feb4f77",
       "dependencies": [
         "jsr:@fedify/fedify@^1.3.4",
         "jsr:@fedify/markdown-it-hashtag",
@@ -565,7 +565,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@deno-library/template@~0.2.1",
-      "jsr:@fedify/botkit@~0.1.0-dev.67+94b4841c",
+      "jsr:@fedify/botkit@~0.1.0-dev.71+2449c2d9",
       "jsr:@fedify/fedify@^1.3.3",
       "jsr:@kitsonk/kv-toolbox@0.25",
       "jsr:@logtape/logtape@0.8",
